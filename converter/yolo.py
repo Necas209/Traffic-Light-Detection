@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 
-from converter.bosch import BoschBox
-from converter.labels import TEST_LABELS, TRAIN_LABELS
+from converter.bosch import BoschBox, get_class_id
 
 
 @dataclass
@@ -19,7 +18,7 @@ class YOLOLabel:
         return self.__str__()
 
 
-def bosch_to_yolo(box: BoschBox, width: float, height: float, test: bool) -> YOLOLabel:
+def bosch_to_yolo(box: BoschBox, width: float, height: float) -> YOLOLabel:
     x_min = box.x_min
     y_min = box.y_min
     x_max = box.x_max
@@ -34,6 +33,6 @@ def bosch_to_yolo(box: BoschBox, width: float, height: float, test: bool) -> YOL
     box_width = (x_max - x_min) / width
     box_height = (y_max - y_min) / height
 
-    class_id = (TEST_LABELS if test else TRAIN_LABELS).index(box.label)
+    class_id = get_class_id(box.label)
 
     return YOLOLabel(class_id, x_center, y_center, box_width, box_height)
