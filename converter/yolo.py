@@ -19,8 +19,8 @@ class YOLOLabel:
 
 
 def bosch_to_yolo(box: BoschBox, width: float, height: float) -> YOLOLabel:
-    x_min = box.x_min
-    y_min = box.y_min
+    x_min = box.x_min if box.x_min > 0 else 0
+    y_min = box.y_min if box.y_min > 0 else 0
     x_max = box.x_max
     y_max = box.y_max
 
