@@ -6,8 +6,8 @@ def main() -> None:
     train_bosch_labels = from_yaml('train.yaml')
     test_bosch_labels = from_yaml('test.yaml')
 
-    convert_to_yolo(train_bosch_labels, 'labels/train')
-    convert_to_yolo(test_bosch_labels, 'labels/test')
+    convert_to_yolo(train_bosch_labels, '../traffic_light_data/labels/train')
+    convert_to_yolo(test_bosch_labels, '../traffic_light_data/labels/test')
 
 
 if __name__ == '__main__':
