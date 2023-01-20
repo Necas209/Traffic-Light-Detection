@@ -28,14 +28,15 @@ def fix_events(input_path: AnyPath, output_path: AnyPath) -> None:
                 for v in ev.summary.value:
                     # Check if the tag should be renamed
                     if v.tag == 'train/cls_loss':
-                        if v.simple_value == 0.0:
+                        if v.simple_value > 1000:
+                            print(f'Found bad value: {v.simple_value} at step {ev.step}! Replacing with {prev_value}.')
                             v.simple_value = prev_value
                         prev_value = v.simple_value
             writer.write(ev.SerializeToString())
 
 
 def main() -> None:
-    name = r'..\..\YOLOv6\runs\train\exp1\events.out.tfevents.1674059414.DESKTOP-I1Q6GKF.4760.0'
+    name = "YOLOv6\\runs\\train\\exp2\\events.out.tfevents.1674171716.DESKTOP-I1Q6GKF.20044.0"
     temp_name = 'temp_events'
     fix_events(name, temp_name)
     os.replace(temp_name, name)
