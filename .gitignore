@@ -152,4 +152,4 @@ cython_debug/
 #.idea/
 
 # Labels
-labels/
+../traffic_light_data/labels/

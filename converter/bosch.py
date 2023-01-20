@@ -20,6 +20,10 @@ class BoschLabel:
     path: str
     boxes: list[BoschBox]
 
+    def filter_out(self, label: str) -> None:
+        """ Removes all boxes with the given label. """
+        self.boxes = [b for b in self.boxes if b.label != label]
+
 
 def from_yaml(path: str) -> list[BoschLabel]:
     """ Loads the Bosch labels from the given yaml file. """
