@@ -153,3 +153,4 @@ cython_debug/
 
 # Data
 traffic_light_data/
+project_key.json
