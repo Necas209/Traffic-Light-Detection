@@ -1,7 +1,6 @@
 import argparse
 
-from data.bosch import BoschLabels
-from data.yolo import convert_to_yolo
+import data.bosch as bosch
 
 
 def create_parser() -> argparse.ArgumentParser:
@@ -15,15 +14,17 @@ def create_parser() -> argparse.ArgumentParser:
 
 def main() -> None:
     args = create_parser().parse_args()
-    labels = BoschLabels.from_yaml(args.input)
+    bosch_labels = bosch.from_yaml(args.input)
 
-    print('Bounding boxes:', labels.number_of_boxes)
+    print('Bounding boxes:', bosch.number_of_boxes(bosch_labels))
 
     if args.filter:
-        labels.filter_out(args.filter)
-        print('Bounding boxes after filtering:', labels.number_of_boxes)
+        bosch.filter_out(bosch_labels, args.filter)
+        print('Bounding boxes after filtering:', bosch.number_of_boxes(bosch_labels))
 
-    convert_to_yolo(labels, args.output_dir)
+    yolo_labels = [label.to_yolo(width=1280, height=720) for label in bosch_labels]
+    for label in yolo_labels:
+        label.to_txt(args.output_dir)
 
 
 if __name__ == '__main__':

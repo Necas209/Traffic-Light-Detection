@@ -29,3 +29,4 @@ def display_video(video_path: str) -> None:
         else:
             break
     cap.release()
+    cv2.destroyAllWindows()
