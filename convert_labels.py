@@ -1,6 +1,6 @@
 import argparse
 
-import data.bosch as bosch
+from data.bosch import BoschDataset
 
 
 def create_parser() -> argparse.ArgumentParser:
@@ -14,17 +14,16 @@ def create_parser() -> argparse.ArgumentParser:
 
 def main() -> None:
     args = create_parser().parse_args()
-    bosch_labels = bosch.from_yaml(args.input)
+    bosch_ds = BoschDataset.from_yaml(args.input)
 
-    print('Bounding boxes:', bosch.number_of_boxes(bosch_labels))
+    print('Bounding boxes:', bosch_ds.number_of_boxes)
 
     if args.filter:
-        bosch.filter_out(bosch_labels, args.filter)
-        print('Bounding boxes after filtering:', bosch.number_of_boxes(bosch_labels))
+        bosch_ds.filter_out(args.filter)
+        print('Bounding boxes after filtering:', bosch_ds.number_of_boxes)
 
-    yolo_labels = [label.to_yolo(width=1280, height=720) for label in bosch_labels]
-    for label in yolo_labels:
-        label.to_txt(args.output_dir)
+    yolo_ds = bosch_ds.to_yolo()
+    yolo_ds.to_txt(args.output_dir)
 
 
 if __name__ == '__main__':
