@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Medeiros"
+  given-names: "Diogo"
+  orcid: "https://orcid.org/0000-0002-6975-7402"
+- family-names: "Dias"
+  given-names: "Mariana"
+  orcid: "https://orcid.org/0000-0000-0000-0000"
+title: "DIP-Project"
+version: 1.0.0
+doi: 10.5281/zenodo.1234
+date-released: 2023-01-23
+url: "https://github.com/Necas209/DIP-Project"
