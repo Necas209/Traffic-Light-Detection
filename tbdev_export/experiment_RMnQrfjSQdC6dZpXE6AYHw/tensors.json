@@ -1,0 +1,2 @@
+{"points": {"steps": [0], "tensors_file_path": "tensors/1674143794.163023.npz", "wall_times": [1674143794.1630235]}, "run": "train\\exp", "summary_metadata": "CgwKCmhpc3RvZ3JhbXMSB2NsYXNzZXMgAg==", "tag": "classes"}
+{"points": {"steps": [0], "tensors_file_path": "tensors/1674179562.745469.npz", "wall_times": [1674179562.7454686]}, "run": "train\\exp2", "summary_metadata": "CgwKCmhpc3RvZ3JhbXMSB2NsYXNzZXMgAg==", "tag": "classes"}
